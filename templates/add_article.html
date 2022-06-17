@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{title}}
+{% endblock title %}
+
+
+{% block main %}
+
+<form action="{% if 'new' in request.path %}{% url 'add_article' %}{% endif %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {% include 'components/_form_errors.html' %}
+
+    {{ form.as_p }}
+<button type="submit" class="btn btn-warning">
+    {% if 'update' in request.path %}
+    Изменить
+    {% else %}
+    Дабавить статью
+    {% endif %}
+</button>
+</form>
+{% endblock main %}

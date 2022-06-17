@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block main %}
+
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="{% static 'blog/img/user.png' %}" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Ваш профиль</h5>
+        <p class="card-text">Имя пользователя: {{ request.user.first_name }} {{ request.user.last_name }}</p>
+        <p class="card-text">Ваш email: {{ request.user.email }}</p>
+        <p class="card-text"><small class="text-muted">Дата регистрации: {{ request.user.date_joined }}</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock main %}

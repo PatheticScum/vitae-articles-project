@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load blog_tags %}
+
+
+{% block main %}
+<h1 class="mb-2 mt-2">Список статей</h1>
+<div class="d-flex justify-content-between">
+    <div class="col-3">
+        {% get_all_categories as categories %}
+        {% include 'blog/components/_sidebar.html' %}
+    </div>
+
+
+    <div class="col-8">
+        {% for article in articles %}
+        {% include 'blog/components/_card.html' %}
+        {% endfor %}
+
+        {% include 'components/_pagination.html' %}
+    </div>
+
+</div>
+{% endblock main %}

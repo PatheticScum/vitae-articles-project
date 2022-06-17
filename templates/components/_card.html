@@ -1,0 +1,43 @@
+{% load static %}
+<div class="card text-center mb-3">
+    <div class="card-header">
+        {{ article.category.title }}
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">{{ article.title }}</h5>
+        <div class="card_photo">
+
+            {% if 'article' in request.path %}
+            <div class="card-body">
+                <div class="card_photo">
+                {% if article.photo %}
+                <img src="{{ article.photo.url }}" width="800" alt="">
+                {% else %}
+                <img src="http://seoexperts4all.com/wp-content/uploads/2016/07/Blogging.png" width="800" alt="">
+                {% endif %}
+            </div>
+                <p class="card-text">{{ article.content | linebreaks }}</p>
+                <a href="{% url 'index' %}" class="btn btn-primary">Главная страница</a>
+                <a href="{% url 'article_update' article.pk %}" class="btn btn-warning">Изменить</a>
+                <a href="{% url 'article_delete' article.pk %}" class="btn btn-danger">Удалить</a>
+            </div>
+
+            {% else %}
+                <div class="card_photo">
+                {% if article.photo %}
+                <img src="{{ article.photo.url }}" width="300" alt="">
+                {% else %}
+                <img src="http://seoexperts4all.com/wp-content/uploads/2016/07/Blogging.png" width="300" alt="">
+                {% endif %}
+            </div>
+            <p class="card-text">{{ article.content | linebreaks | truncatewords:30 }}</p>
+            <a href="{{ article.get_absolute_url }}" class="btn btn-primary">Подробнее...</a>
+
+            {% endif %}
+        </div>
+
+    </div>
+    <div class="card-footer text-muted">
+        {{ article.created_at| timesince }} назад
+    </div>
+</div>

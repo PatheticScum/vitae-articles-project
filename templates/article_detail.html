@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'blog/css/main.css' %}">
+{% endblock style %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block main %}
+
+{% include 'blog/components/_card.html' %}
+
+
+{% endblock main %}
